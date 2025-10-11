@@ -1,0 +1,14 @@
+:root {
+  --primary-green-color: #6ea74b;
+  --secondary-green-color: #80c342;
+  --card-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  --button-box-shadow: 0 2px 3px #6ea74b86;
+  --card-background: #f9f9f9;
+  --card-border: 1px solid #d9d9d9;
+  --card-border-radius: 10px;
+}
+
+[id*="error-message"] {
+  color: red;
+}

@@ -1,0 +1,9 @@
+/config.php
+.htaccess
+/admin
+/includes
+/uploads
+/vendor
+*.json
+*.lock
+inputValidater.php
