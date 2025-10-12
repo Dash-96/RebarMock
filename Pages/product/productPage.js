@@ -136,9 +136,13 @@ function upgradeSize(button, price = 0) {
 
 //handles the add to cart of the final product
 async function addProductToCart() {
+  const token = localStorage.getItem("token");
   let req = await fetch("http://localhost/rebarMock/api/V1/cart/cartItem", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
     body: JSON.stringify(product),
   });
   let response = await req.json();

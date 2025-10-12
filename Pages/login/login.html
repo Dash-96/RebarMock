@@ -21,12 +21,7 @@
             type="text"
             placeholder="שם משתמש"
           /> -->
-          <input
-            id="email-input"
-            name="email"
-            type="email"
-            placeholder="אימייל"
-          />
+          <input id="email-input" name="email" placeholder="אימייל" />
           <input
             id="password-input"
             name="password"
@@ -58,9 +53,10 @@
           method: "POST",
         });
         let response = await request.json();
-        if (response["response"] == "success") {
+        if (response["message"] == "success") {
+          console.log(response["token"]);
+          localStorage.setItem("token", response["token"]);
           window.location.href = "http://localhost/rebarMock/menu";
-          // "http://localhost/rebarMock/Pages/product/productsMenu.php";
         } else {
           alert("התחברות נכשלה" + response);
         }

@@ -4,7 +4,7 @@ function getCart($user_id)
     global $mysqli;
     $active = 1;
     $cart_id = 0;
-    if (!isset($_SESSION['user_id'])) {
+    if (!isset($user_id)) {
         http_response_code(401);
         echo json_encode(["error" => "no user id in session"]);
         exit;

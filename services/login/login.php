@@ -1,13 +1,14 @@
 <?php
 require_once BASE_PATH . ("/inputValidater.php");
+require_once BASE_PATH . "/includes/token.php";
 session_start();
 //validatePostRequest();
-function login()
+function login($data)
 {
     global $mysqli;
-    $action = $_POST['action'];
-    $email = htmlspecialchars($_POST['email']);
-    $password = htmlspecialchars($_POST['password']);
+    $email = htmlspecialchars($data['email']);
+    $action = $data['action'];
+    $password = htmlspecialchars($data['password']);
 
     $user_id = 0;
     $user_email = "";
@@ -28,18 +29,19 @@ function login()
         case "login":
             if ($email == $user_email) {
                 if (password_verify($password, $user_pass)) {
-                    $_SESSION['user_id'] = $user_id;
-                    return "success";
+                    $token =  generateToken($user_id, $email);
+                    generateCoockie($token);
+                    return (['message' => 'success', 'token' => $token]);
                 } else {
-                    return "Incorrect Password";
+                    return ['message' => 'failed', 'error' => "Incorrect password"];
                 }
             } else {
-                return "Incorrect email";
+                return ['message' => 'failed', 'error' => "Incorrect email"];
             }
             break;
         case "sign-up":
             if ($email == $user_email) {
-                return "duplicate";
+                return ['message' => 'failed', 'error' => "Email already exists"];
                 die();
             }
             $hashed_pass = password_hash($password, PASSWORD_DEFAULT);

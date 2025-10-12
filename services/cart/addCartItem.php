@@ -1,14 +1,15 @@
 <?php
 // include "../../../inputValidater.php";
 include BASE_PATH . "/services/cart/getCart.php";
+//include BASE_PATH . "/includes/token.php";
 session_start();
 //validatePostRequest();
-function addCartItem($data, $user_id = null)
+function addCartItem($data, $user_id)
 {
     global $mysqli;
-    if (!isset($user_id)) {
-        $user_id = $_SESSION['user_id'];
-    }
+    // if (!isset($user_id)) {
+    //     $user_id = $_SESSION['user_id'];
+    // }
     if ($data) {
         $cart_id = getCart($user_id);
         $product_id = $data['productId'];
